@@ -21,7 +21,7 @@ def add_user():
             check = Users.query.filter_by(email_address = form.email_address.data).first()
             if check : 
                 flash('Email already exists', category='danger')
-                request.post(https://prod-17.centralus.logic.azure.com/workflows/2e60e8aa67bd4e47bf88927b5370876f/triggers/manual/paths/invoke/{email}/{firstname}/{lastname}/connexion?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fOHIgdcEofUDfmqmA6UbxuNhyUC4tJr-ZhETuiOtJGw, body=dict(“email”: form.email_adress.data, “firstname”: form.first_name.data, “lastname”: form.last_name.data))
+                request.post("https://prod-17.centralus.logic.azure.com/workflows/2e60e8aa67bd4e47bf88927b5370876f/triggers/manual/paths/invoke/{email}/{firstname}/{lastname}/connexion?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=fOHIgdcEofUDfmqmA6UbxuNhyUC4tJr-ZhETuiOtJGw", body=dict(“email”: form.email_adress.data, “firstname”: form.first_name.data, “lastname”: form.last_name.data))
                 return redirect(url_for('main.add_user'))
             else:
                 Users(last_name = form.last_name.data, first_name = form.first_name.data, email_address = form.email_address.data, password_hash = generate_password_hash(form.password_hash.data, method='sha256')).save_to_db()
